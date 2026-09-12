@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://reconciliation-engine-vivf.onrender.com/api/:path*"
+    }
+  ]
+}
