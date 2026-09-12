@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FilterBar from './components/FilterBar';
 import DiscrepancyTable from './components/DiscrepancyTable';
 
-const API = '/api';
+const API = import.meta.env.VITE_API_URL || '/api';
 
 export default function App() {
   const [orgs, setOrgs] = useState([]);
@@ -18,10 +18,11 @@ export default function App() {
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || 'Failed to load organizations.');
+          throw new Error(
+            data.error || 'Failed to load organizations.'
+          );
         }
 
-        // Django returns the organization list directly.
         setOrgs(data);
 
         if (data.length > 0) {
@@ -29,7 +30,9 @@ export default function App() {
         }
       })
       .catch((err) => {
-        setError(err.message || 'Backend is not running.');
+        setError(
+          err.message || 'Backend is not running.'
+        );
       });
   }, []);
 
@@ -52,14 +55,17 @@ export default function App() {
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || 'Request failed.');
+          throw new Error(
+            data.error || 'Request failed.'
+          );
         }
 
-        // Django returns the discrepancy list directly.
         setRows(data);
       })
       .catch((err) => {
-        setError(err.message || 'Failed to load discrepancies.');
+        setError(
+          err.message || 'Failed to load discrepancies.'
+        );
         setRows([]);
       });
   }, [org, reason, sort]);
@@ -68,7 +74,10 @@ export default function App() {
     <main>
       <header>
         <h1>Reconciliation Dashboard</h1>
-        <p>Cross-system discrepancies, scoped to one organization.</p>
+
+        <p>
+          Cross-system discrepancies, scoped to one organization.
+        </p>
       </header>
 
       <FilterBar
@@ -81,10 +90,15 @@ export default function App() {
         setSort={setSort}
       />
 
-      {error && <p className="error">{error}</p>}
+      {error && (
+        <p className="error">
+          {error}
+        </p>
+      )}
 
       <p className="count">
-        {rows.length} disagreement{rows.length === 1 ? '' : 's'}
+        {rows.length} disagreement
+        {rows.length === 1 ? '' : 's'}
       </p>
 
       <DiscrepancyTable items={rows} />
