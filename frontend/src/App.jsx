@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FilterBar from './components/FilterBar';
 import DiscrepancyTable from './components/DiscrepancyTable';
 
-const API = '/api';
+const API = 'https://reconciliation-engine-vivf.onrender.com/api';
 
 export default function App() {
   const [orgs, setOrgs] = useState([]);
