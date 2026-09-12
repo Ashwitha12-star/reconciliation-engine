@@ -56,4 +56,5 @@ USE_TZ = True
 
 CORS_ALLOWED_ORIGINS = [
     'https://reconciliation-engine-three.vercel.app',
+    'https://reconciliation-engine-git-main-ashwitha12-stars-projects.vercel.app',
 ]
