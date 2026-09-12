@@ -20,11 +20,13 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
+    'corsheaders',
     'reconciler',
 ]
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 
@@ -50,3 +52,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 USE_TZ = True
+
+
+CORS_ALLOWED_ORIGINS = [
+    'https://reconciliation-engine-three.vercel.app',
+]
