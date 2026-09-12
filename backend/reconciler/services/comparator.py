@@ -1,12 +1,18 @@
 import re
+
 from collections import defaultdict
+
 from dataclasses import dataclass
+
 from decimal import Decimal, InvalidOperation
 
 
 MISSING = "MISSING_IN_SYSTEM_B"
+
 ORPHAN = "ORPHAN_IN_SYSTEM_B"
+
 DUPLICATE = "DUPLICATE_IN_SYSTEM_B"
+
 MISMATCH = "VALUE_MISMATCH"
 
 
@@ -183,7 +189,6 @@ def reconcile_records(records_a, records_b, location_org_map):
         # -----------------------------------------------------
 
         if len(matching_b) > 1:
-
             values = "; ".join(
                 str(entry.get("value", ""))
                 for entry in matching_b
@@ -223,7 +228,6 @@ def reconcile_records(records_a, records_b, location_org_map):
         # -----------------------------------------------------
 
         if value_mismatch:
-
             discrepancies.append(
                 Discrepancy(
                     reason=MISMATCH,
@@ -244,7 +248,6 @@ def reconcile_records(records_a, records_b, location_org_map):
         # -----------------------------------------------------
 
         if date_mismatch:
-
             discrepancies.append(
                 Discrepancy(
                     reason=MISMATCH,
